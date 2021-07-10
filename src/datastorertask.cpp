@@ -38,7 +38,8 @@ Task DSPrivate::convertJsonObjectToTask(QJsonObject &jsonObject) {
     jsonObject["inportance"].toString(),
     jsonObject["participants"].toString(),
     jsonObject["money"].toString(),
-    jsonObject["category"].toInt()
+    jsonObject["category"].toInt(),
+    jsonObject["is_do"].toBool()
     );
 }
 
@@ -52,6 +53,7 @@ QJsonObject DSPrivate::convertTaskToJsonObject(Task &task) {
     taskObject["participants"] = task.participants;
     taskObject["money"] = task.money;
     taskObject["category"] = task.category;
+    taskObject["is_do"] = task.is_do;
     return taskObject;
 }
 

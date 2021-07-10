@@ -6,7 +6,7 @@
 struct Task
 {
     Task(QString name, QString text, QString place, QString time, QString importance, QString participants,
-         QString money,int category);
+         QString money,int category, bool is_do=false);
     QString name;
     QString text;
     QString place;
@@ -14,6 +14,7 @@ struct Task
     QString importance;
     QString participants;
     QString money;
+    bool is_do;
     int category=0;
 };
 

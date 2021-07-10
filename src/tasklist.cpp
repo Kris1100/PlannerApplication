@@ -18,6 +18,7 @@ QHash<int, QByteArray> TaskList::roleNames() const {
     roles[ParticipantsRole] = "participants";
     roles[MoneyRole] = "money";
     roles[CategoryRole]="category";
+    roles[Is_doRole]="is_do";
     return roles;
 }
 
@@ -50,6 +51,7 @@ void TaskList::addTask(QString name, QString text, QString place, QString time, 
     beginInsertRows(QModelIndex(), tasksSize, tasksSize);
     m_tasks.append(Task(name, text,place,time,importance,participants,money, category));
     endInsertRows();
+    storeList();
 }
 
 void TaskList::readList() {

@@ -20,7 +20,8 @@ public:
         ImportanceRole,
         ParticipantsRole,
         MoneyRole,
-        CategoryRole
+        CategoryRole,
+        Is_doRole
     };
     virtual int rowCount(const QModelIndex&) const { return m_tasks.size(); }
     virtual QVariant data(const QModelIndex &index, int role) const;

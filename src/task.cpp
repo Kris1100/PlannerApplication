@@ -1,7 +1,7 @@
 #include "task.h"
 
 Task::Task(QString name, QString text, QString place, QString time, QString importance, QString participants,
-           QString money, int category)
+           QString money, int category, bool is_do)
 {
     this->name = name;
     this->text = text;
@@ -11,4 +11,5 @@ Task::Task(QString name, QString text, QString place, QString time, QString impo
     this->participants=participants;
     this->money=money;
     this->category=category;
+    this->is_do=is_do;
 }
