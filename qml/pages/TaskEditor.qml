@@ -2,6 +2,13 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 Dialog {
     id: taskEditor
+    property alias taskName: taskNameField.text
+    property alias taskText: taskTextField.text
+    property alias taskPlace:taskPlaceField.text
+    property alias taskTime: taskTimeField.text
+    property alias taskImportance: taskImportanceField.value
+    property alias taskParticipants: taskParticipantsField.text
+    property alias taskMoney: taskMoneyField.text
     property string name: ""
     property string text: ""
     property string place: ""
@@ -44,7 +51,6 @@ Dialog {
             TextField {
                 id: taskNameField
                 width: parent.width
-                placeholderText: qsTr("Task name")
             }
             Label {
                 text: qsTr("Task description:")
@@ -53,8 +59,7 @@ Dialog {
 
             TextArea {
                 id: taskTextField
-                width: parent.width
-                placeholderText: qsTr("Description")
+                width: parent.width        
             }
 
             Label {
@@ -65,7 +70,6 @@ Dialog {
             TextArea {
                 id: taskPlaceField
                 width: parent.width
-                placeholderText: qsTr("Location")
             }
             Label {
                 text: qsTr("Time:")
@@ -75,7 +79,6 @@ Dialog {
             TextArea {
                 id: taskTimeField
                 width: parent.width
-                placeholderText: qsTr("Time")
             }
             ComboBox {
                 id:taskImportanceField
@@ -96,8 +99,7 @@ Dialog {
             TextArea {
                 id: taskParticipantsField
                 width: parent.width
-                placeholderText: qsTr("Participants")
-            }
+             }
             Label {
                 text: qsTr("Money:")
                 font.pixelSize: Theme.fontSizeSmall
@@ -106,13 +108,14 @@ Dialog {
             TextArea {
                 id: taskMoneyField
                 width: parent.width
-                placeholderText: qsTr("Money")
-            }
+             }
         }
         VerticalScrollDecorator {}
     }
     onAccepted: {
+
         taskEditor.name = taskNameField.text
+        if (taskEditor.name == "") taskEditor.name = "New Task"
         taskEditor.text = taskTextField.text
         taskEditor.place = taskPlaceField.text
         taskEditor.time = taskTimeField.text
@@ -120,4 +123,5 @@ Dialog {
         taskEditor.participants = taskParticipantsField.text
         taskEditor.money = taskMoneyField.text
     }
+
 }

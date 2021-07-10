@@ -10,10 +10,43 @@ Page {
     property alias taskParticipants: taskParticipantsLabel.text
     property alias taskMoney: taskMoneyLabel.text
 
-    SilicaFlickable {
+    SilicaListView {
         anchors.fill: parent
         contentHeight: content.height
+        //
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Edit task")
+                onClicked: {
+                    var dialog = pageStack.push("TaskEditor.qml",{
+                                                                   taskName: taskName,
+                                                                   taskText: taskText,
+                                                                   taskPlace: taskPlace,
+                                                                   taskTime: taskTime,
+                                                                   taskImportance: taskImportance,
+                                                                   taskParticipants: taskParticipants,
+                                                                   taskMoney: taskMoney
 
+                                                               });
+                    /*dialog.accepted.connect(function() {
+                        taskListStorage.edittask(task , dialog.name, dialog.text, dialog.place, dialog.time, dialog.importance,dialog.participants,
+                                                 dialog.money);
+                    });
+*/
+                }
+            }
+           /* MenuItem {
+                text: qsTr("Delete task")
+                onClicked: {
+                    var dialog = pageStack.push(Qt.resolvedUrl("FixedCategoryEditor.qml"));
+                    dialog.accepted.connect(function() {
+                        categoryListStorage.addcategory(dialog.name);
+                    });
+                }
+            }
+            */
+        }
+        //
         Column {
             id: content
             anchors {

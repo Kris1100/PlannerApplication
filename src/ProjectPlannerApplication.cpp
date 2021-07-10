@@ -4,6 +4,7 @@
 #include "categorylist.h"
 #include "tasklist.h"
 
+
 int main(int argc, char *argv[])
 {
     qmlRegisterType<CategoryList>("ProjectPlannerApplication", 1, 0, "CategoryList");

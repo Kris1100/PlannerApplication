@@ -51,6 +51,20 @@ void TaskList::addTask(QString name, QString text, QString place, QString time, 
     beginInsertRows(QModelIndex(), tasksSize, tasksSize);
     m_tasks.append(Task(name, text,place,time,importance,participants,money, category));
     endInsertRows();
+}
+
+void TaskList::edittask(Task* task, QString name, QString text, QString place, QString time, QString importance, QString participants,
+                        QString money) {
+    auto tasksSize = m_tasks.size();
+    beginInsertRows(QModelIndex(), tasksSize, tasksSize);
+    task->name=name;
+    task->text=text;
+    task->place=place;
+    task->time=time;
+    task->importance=importance;
+    task->participants=participants;
+    task->money=money;
+    endInsertRows();
     storeList();
 }
 

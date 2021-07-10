@@ -68,15 +68,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Task name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Task description:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -84,15 +76,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Time:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -100,20 +84,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Participants</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Money:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Money</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TaskViewPage</name>
+    <message>
+        <source>Edit task</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Task information</source>
         <translation type="unfinished"></translation>

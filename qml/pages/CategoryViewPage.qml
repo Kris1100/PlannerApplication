@@ -10,6 +10,7 @@ Page {
         header: PageHeader {
             title: qsTr("My Tasks")
         }
+
         PullDownMenu {
             MenuItem {
                 text: qsTr("Add new task")
@@ -31,9 +32,8 @@ Page {
                     leftMargin: Theme.horizontalPageMargin
                     rightMargin: Theme.horizontalPageMargin
                 }
-                text: taskListStorage.name
+                text: model.name
             }
-
             Component {
                 id: taskViewPage
                 TaskViewPage {}
@@ -46,8 +46,8 @@ Page {
                                    taskPlace: model.place,
                                    taskTime: model.time,
                                    taskImportance: model.importance,
-                                   taskParticipants: model.Participants,
-                                   taskMoney: model.Money
+                                   taskParticipants: model.participants,
+                                   taskMoney: model.money,
 
                                });
             }

@@ -36,5 +36,6 @@ Dialog {
     }
     onAccepted: {
         categoryEditor.name = categoryNameField.text
+        if (categoryEditor.name == "") categoryEditor.name = "New Category"
     }
 }
