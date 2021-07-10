@@ -11,6 +11,14 @@ ApplicationWindow
     CategoryList {
         id: categoryListStorage
     }
-    Component.onCompleted: categoryListStorage.readList()
-    Component.onDestruction: categoryListStorage.storeList()
+    TaskList{
+        id: taskListStorage
+    }
+
+    Component.onCompleted:{
+        categoryListStorage.readList()
+        taskListStorage.readList()}
+    Component.onDestruction:{
+        categoryListStorage.storeList()
+        taskListStorage.storeList()}
 }

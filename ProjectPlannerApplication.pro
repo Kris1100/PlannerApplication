@@ -17,12 +17,19 @@ CONFIG += sailfishapp
 SOURCES += src/ProjectPlannerApplication.cpp \
     src/category.cpp \
     src/categorylist.cpp \
-    src/datastorer.cpp
+    src/datastorer.cpp \
+    src/datastorertask.cpp \
+    src/task.cpp \
+    src/tasklist.cpp
 
 DISTFILES += qml/ProjectPlannerApplication.qml \
     qml/cover/CoverPage.qml \
+    qml/pages/CategoryEditor.qml \
     qml/pages/CategoryViewPage.qml \
+    qml/pages/FixedCategoryEditor.qml \
     qml/pages/Menu.qml \
+    qml/pages/TaskEditor.qml \
+    qml/pages/TaskViewPage.qml \
     rpm/ProjectPlannerApplication.changes.in \
     rpm/ProjectPlannerApplication.changes.run.in \
     rpm/ProjectPlannerApplication.spec \
@@ -45,4 +52,7 @@ TRANSLATIONS += translations/ProjectPlannerApplication-de.ts
 HEADERS += \
     src/category.h \
     src/categorylist.h \
-    src/datastorer.h
+    src/datastorer.h \
+    src/datastorertask.h \
+    src/task.h \
+    src/tasklist.h

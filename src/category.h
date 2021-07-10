@@ -8,7 +8,7 @@ struct Category
 {
     Category(QString name, int id);
     QString name;
-    int id;
+    int id = 0;
 };
 
 #endif // CATEGORY_H

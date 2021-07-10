@@ -1,4 +1,3 @@
-//Ready
 #include <QDir>
 #include <QDebug>
 #include <QFile>
@@ -31,8 +30,8 @@ void DSPrivate::createDataPath() {
 
 Category DSPrivate::convertJsonObjectToCategory(QJsonObject &jsonObject) {
     return Category(
-    jsonObject["name"].toString(),
-    jsonObject["id"].toInt()
+        jsonObject["name"].toString(),
+        jsonObject["id"].toInt()
     );
 }
 

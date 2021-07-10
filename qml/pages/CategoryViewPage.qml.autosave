@@ -31,7 +31,7 @@ Page {
                     leftMargin: Theme.horizontalPageMargin
                     rightMargin: Theme.horizontalPageMargin
                 }
-                text: taskListStorage.name
+                text: model.name
             }
 
             Component {

@@ -21,10 +21,11 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const;
     QHash<int, QByteArray> roleNames() const;
 
-    Q_INVOKABLE void addcategory(QString name, int id);
+    Q_INVOKABLE void addcategory(QString name); //добавить функцию добавления id
     Q_INVOKABLE void readList();
     Q_INVOKABLE void storeList();
 private:
+    int count;
     QList<Category> m_categories;
 };
 
