@@ -11,11 +11,11 @@
 #include "task.h"
 
 namespace DSPrivate {
-    QString formDataFilePathTask();
-    void createDataPathTask();
+QString formDataFilePathTask();
+void createDataPathTask();
 
-    QJsonObject convertTaskToJsonObject(Task &task);
-    Task convertJsonObjectToTask(QJsonObject &jsonObject);
+QJsonObject convertTaskToJsonObject(Task &task);
+Task convertJsonObjectToTask(QJsonObject &jsonObject);
 };
 
 QString DSPrivate::formDataFilePathTask() {
@@ -31,16 +31,16 @@ void DSPrivate::createDataPathTask() {
 
 Task DSPrivate::convertJsonObjectToTask(QJsonObject &jsonObject) {
     return Task(
-    jsonObject["name"].toString(),
-    jsonObject["text"].toString(),
-    jsonObject["place"].toString(),
-    jsonObject["time"].toString(),
-    jsonObject["inportance"].toString(),
-    jsonObject["participants"].toString(),
-    jsonObject["money"].toString(),
-    jsonObject["category"].toInt(),
-    jsonObject["is_do"].toBool()
-    );
+                jsonObject["name"].toString(),
+            jsonObject["text"].toString(),
+            jsonObject["place"].toString(),
+            jsonObject["time"].toString(),
+            jsonObject["inportance"].toString(),
+            jsonObject["participants"].toString(),
+            jsonObject["money"].toString(),
+            jsonObject["category"].toInt(),
+            jsonObject["is_do"].toBool()
+            );
 }
 
 QJsonObject DSPrivate::convertTaskToJsonObject(Task &task) {
@@ -100,4 +100,11 @@ void DataStorerTask::storeDataTask(QList<Task> &tasks) {
     dataFile.open(QFile::WriteOnly);
     dataFile.write(jsonDocument.toJson(QJsonDocument::Indented));
     dataFile.close();
+}
+
+void DataStorerTask::deleteTask(int index){
+   // QFile dataFile(DSPrivate::formDataFilePathTask());
+    auto jsonArray=DataStorerTask::readDataTask();
+    jsonArray.removeAt(index);
+    DataStorerTask::storeDataTask(jsonArray);
 }

@@ -48,6 +48,7 @@ Page {
                                    taskImportance: model.importance,
                                    taskParticipants: model.participants,
                                    taskMoney: model.money,
+                                   taskIndex: index
 
                                });
             }

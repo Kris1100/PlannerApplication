@@ -33,6 +33,8 @@ public:
                               QString money);
     Q_INVOKABLE void readList();
     Q_INVOKABLE void storeList();
+    Q_INVOKABLE void deleteTask(int index);
+
 private:
     QList<Task> m_tasks;
 };

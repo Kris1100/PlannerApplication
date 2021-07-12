@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
+    id:page
     property alias taskName: taskNameLabel.text
     property alias taskText: taskTextLabel.text
     property alias taskPlace:taskPlaceLabel.text
@@ -9,11 +10,17 @@ Page {
     property alias taskImportance: taskImportanceLabel.text
     property alias taskParticipants: taskParticipantsLabel.text
     property alias taskMoney: taskMoneyLabel.text
+    property int index: 0
+    property alias taskIndex: page.index
+
+
 
     SilicaListView {
         anchors.fill: parent
+        model: taskListStorage
         contentHeight: content.height
         //
+        id:first
         PullDownMenu {
             MenuItem {
                 text: qsTr("Edit task")
@@ -35,16 +42,14 @@ Page {
 */
                 }
             }
-           /* MenuItem {
+            MenuItem {
                 text: qsTr("Delete task")
                 onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("FixedCategoryEditor.qml"));
-                    dialog.accepted.connect(function() {
-                        categoryListStorage.addcategory(dialog.name);
-                    });
-                }
+                    taskListStorage.deleteTask(page.index);
+                    pageStack.push(Qt.resolvedUrl("CategoryViewPage.qml"));
+
+                    }
             }
-            */
         }
         //
         Column {

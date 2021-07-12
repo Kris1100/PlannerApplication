@@ -95,6 +95,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Delete task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Task information</source>
         <translation type="unfinished"></translation>
     </message>

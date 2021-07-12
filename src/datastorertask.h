@@ -9,6 +9,7 @@
 namespace DataStorerTask {
     QList<Task> readDataTask();
     void storeDataTask(QList<Task> &tasks);
+    void deleteTask(int index);
 };
 
 #endif

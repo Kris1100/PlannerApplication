@@ -51,6 +51,7 @@ void TaskList::addTask(QString name, QString text, QString place, QString time, 
     beginInsertRows(QModelIndex(), tasksSize, tasksSize);
     m_tasks.append(Task(name, text,place,time,importance,participants,money, category));
     endInsertRows();
+    storeList();
 }
 
 void TaskList::edittask(Task* task, QString name, QString text, QString place, QString time, QString importance, QString participants,
@@ -72,6 +73,10 @@ void TaskList::readList() {
     beginResetModel();
     m_tasks = DataStorerTask::readDataTask();
     endResetModel();
+}
+
+void TaskList::deleteTask(int index) {
+    DataStorerTask::deleteTask(index);
 }
 
 void TaskList::storeList() {

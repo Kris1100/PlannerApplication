@@ -50,7 +50,7 @@ Page {
 
             onClicked: {
                 pageStack.push(categoryViewPage, {
-                                   categoryName: model.name,
+                                   //categoryName: model.name,
                                    //добавить список!!!
                                });
             }

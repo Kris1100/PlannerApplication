@@ -3,6 +3,7 @@
 #include <sailfishapp.h>
 #include "categorylist.h"
 #include "tasklist.h"
+#include "task.h"
 
 
 int main(int argc, char *argv[])
