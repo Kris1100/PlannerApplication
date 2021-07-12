@@ -9,6 +9,7 @@
 namespace DataStorer {
     QList<Category> readData();
     void storeData(QList<Category> &categories);
+    void deleteCategory(int index);
 };
 
 #endif // DATASTORER_H

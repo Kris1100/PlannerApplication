@@ -20,6 +20,5 @@ ApplicationWindow
         taskListStorage.readList()}
     Component.onDestruction:{
         categoryListStorage.storeList()
-        //taskListStorage.storeList()
         }
 }

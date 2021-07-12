@@ -86,3 +86,10 @@ void DataStorer::storeData(QList<Category> &categories) {
     dataFile.write(jsonDocument.toJson(QJsonDocument::Indented));
     dataFile.close();
 }
+
+//void DataStorer::deleteCategory(int index){
+//    auto jsonArray=DataStorer::readDataTask();
+//    jsonArray.removeAt(index);
+//    DataStorerTask::storeDataTask(jsonArray);
+//}
+

@@ -35,24 +35,32 @@ Page {
                                                                    taskMoney: taskMoney
 
                                                                });
-                    /*dialog.accepted.connect(function() {
-                        taskListStorage.edittask(task , dialog.name, dialog.text, dialog.place, dialog.time, dialog.importance,dialog.participants,
+                    dialog.accepted.connect(function() {
+                        taskListStorage.edittask(page.index, dialog.name, dialog.text, dialog.place, dialog.time, dialog.importance,dialog.participants,
                                                  dialog.money);
+
                     });
-*/
+                    taskListStorage.readList();
+
+
+
                 }
             }
             MenuItem {
                 text: qsTr("Delete task")
                 onClicked: {
                     taskListStorage.deleteTask(page.index);
-                    pageStack.push(Qt.resolvedUrl("CategoryViewPage.qml"));
+                    taskListStorage.readList();
+                    pageStack.pop();
+
 
                     }
             }
         }
         //
+
         Column {
+
             id: content
             anchors {
                 left: parent.left

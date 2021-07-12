@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+
 Dialog {
     id: taskEditor
     property alias taskName: taskNameField.text
@@ -113,7 +114,6 @@ Dialog {
         VerticalScrollDecorator {}
     }
     onAccepted: {
-
         taskEditor.name = taskNameField.text
         if (taskEditor.name == "") taskEditor.name = "New Task"
         taskEditor.text = taskTextField.text
@@ -122,6 +122,6 @@ Dialog {
         taskEditor.importance = taskImportanceField.value
         taskEditor.participants = taskParticipantsField.text
         taskEditor.money = taskMoneyField.text
+        pageStack.pop();
     }
-
 }

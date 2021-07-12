@@ -54,19 +54,20 @@ void TaskList::addTask(QString name, QString text, QString place, QString time, 
     storeList();
 }
 
-void TaskList::edittask(Task* task, QString name, QString text, QString place, QString time, QString importance, QString participants,
+void TaskList::edittask(int index, QString name, QString text, QString place, QString time, QString importance, QString participants,
                         QString money) {
     auto tasksSize = m_tasks.size();
     beginInsertRows(QModelIndex(), tasksSize, tasksSize);
-    task->name=name;
-    task->text=text;
-    task->place=place;
-    task->time=time;
-    task->importance=importance;
-    task->participants=participants;
-    task->money=money;
+    m_tasks[index].name=name;
+    m_tasks[index].text=text;
+    m_tasks[index].place=place;
+    m_tasks[index].time=time;
+    m_tasks[index].importance=importance;
+    m_tasks[index].participants=participants;
+    m_tasks[index].money=money;
     endInsertRows();
-    storeList();
+    DataStorerTask::storeDataTask(m_tasks);
+
 }
 
 void TaskList::readList() {
@@ -77,6 +78,9 @@ void TaskList::readList() {
 
 void TaskList::deleteTask(int index) {
     DataStorerTask::deleteTask(index);
+    m_tasks = DataStorerTask::readDataTask();
+
+
 }
 
 void TaskList::storeList() {

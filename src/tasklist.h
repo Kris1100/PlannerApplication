@@ -29,7 +29,7 @@ public:
 
     Q_INVOKABLE void addTask(QString name, QString text, QString place, QString time, QString importance, QString participants,
                              QString money, int category);
-    Q_INVOKABLE void edittask(Task* task, QString name, QString text, QString place, QString time, QString importance, QString participants,
+    Q_INVOKABLE void edittask(int index, QString name, QString text, QString place, QString time, QString importance, QString participants,
                               QString money);
     Q_INVOKABLE void readList();
     Q_INVOKABLE void storeList();
