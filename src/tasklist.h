@@ -35,6 +35,9 @@ public:
     Q_INVOKABLE void readList(int id);
     Q_INVOKABLE void storeList();
     Q_INVOKABLE void deleteTask(int index);
+    Q_INVOKABLE void deleteTask_id(int index);
+    Q_INVOKABLE void checkedtask(int index, bool is_do);
+
 
 private:
     QList<Task> m_tasks;

@@ -32,7 +32,7 @@ Page {
                                     dialog.time, dialog.importance,
                                     dialog.participants, dialog.money,
                                     category) //добавить поле категория
-                    })
+                    });
                 }
             }
             MenuItem {
@@ -43,14 +43,15 @@ Page {
                                                 })
                     dialog.accepted.connect(function () {
                         categoryListStorage.editcategory(page.index,
-                                                         dialog.name)
-                    })
+                                                         dialog.name);
+                    });
                 }
             }
             MenuItem {
                 text: qsTr("Delete category")
                 onClicked: {
-                    categoryListStorage.deleteCategory(categorypageview.index)
+                    taskListStorage.deleteTask_id(category);
+                    categoryListStorage.deleteCategory(categorypageview.index);
                     pageStack.pop()
                 }
             }
@@ -66,10 +67,19 @@ Page {
                 IconTextSwitch {
                     id: checkbox
                     width: Theme.itemSizeMedium
-                    onCheckedChanged: if (model.is_do)
-                                          model.is_do = false
-                                      else
-                                          model.is_do = true
+                    onClicked: {if (model.is_do){
+                                    taskListStorage.checkedtask(index, false)
+                                      }
+
+                                      else{
+                                         taskListStorage.checkedtask(index, true)
+
+                                      }
+
+                    }
+
+                        checked: model.is_do
+
                 }
                 Label {
                     anchors.verticalCenter: parent.verticalCenter

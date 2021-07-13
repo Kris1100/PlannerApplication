@@ -43,6 +43,8 @@ QVariant TaskList::data(const QModelIndex &index, int role) const {
         return QVariant(item.participants);
     case MoneyRole:
         return QVariant(item.money);
+    case Is_doRole:
+        return QVariant(item.is_do);
     default:
         return QVariant();
     }
@@ -56,7 +58,7 @@ void TaskList::addTask(QString name, QString text, QString place, QString time, 
     beginInsertRows(QModelIndex(), tasksSize, tasksSize);
     current_tasks.append(m_tasks.size() - 1);
     endInsertRows();
-    //storeList();
+    storeList();
 
 }
 
@@ -74,12 +76,16 @@ void TaskList::edittask(int index, QString name, QString text, QString place, QS
     current_tasks.append(index);
     endInsertRows();
     beginRemoveRows(QModelIndex(), index+1, index+1);
-    current_tasks.removeAt(index+1);
+    endRemoveRows();
+}
+void TaskList::checkedtask(int index, bool is_do) {
+    m_tasks[current_tasks[index]].is_do=is_do;
+    beginInsertRows(QModelIndex(), index, index);
+    current_tasks.append(index);
+    endInsertRows();
+    beginRemoveRows(QModelIndex(), index+1, index+1);
     endRemoveRows();
     storeList();
-
-
-
 }
 
 void TaskList::readList() {
@@ -101,6 +107,21 @@ void TaskList::deleteTask(int index) {
     beginRemoveRows(QModelIndex(), index, index);
     m_tasks.removeAt(current_tasks[index]);
     endRemoveRows();
+}
+
+void TaskList::deleteTask_id(int id) {
+    int i =0;
+    auto size = m_tasks.size();
+    while (i < size){
+        if (m_tasks[i].category == id){
+            beginRemoveRows(QModelIndex(), i, i);
+            m_tasks.removeAt(i);
+            endRemoveRows();
+            i--;
+            size--;
+        }
+        i++;
+    }
 }
 
 void TaskList::storeList() {

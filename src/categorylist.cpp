@@ -36,6 +36,8 @@ void CategoryList::addcategory(QString name) {
     beginInsertRows(QModelIndex(), categorysSize, categorysSize);
     m_categories.append(Category(name, id));
     endInsertRows();
+    storeList();
+
 }
 
 void CategoryList::readList() {
@@ -52,15 +54,16 @@ void CategoryList::storeList() {
 }
 
 void CategoryList::deleteCategory(int index) {
-    DataStorer::deleteCategory(index);
-    m_categories = DataStorer::readData();
+    beginRemoveRows(QModelIndex(), index, index);
+    m_categories.removeAt(index);
+    endRemoveRows();
 }
 
 void CategoryList::editcategory(int index, QString name) {
-    auto categoriesSize = m_categories.size();
-    beginInsertRows(QModelIndex(), categoriesSize, categoriesSize);
+    beginInsertRows(QModelIndex(), index, index);
     m_categories[index].name=name;
     endInsertRows();
-    DataStorer::storeData(m_categories);
-
+    beginRemoveRows(QModelIndex(), index+1, index+1);
+    endRemoveRows();
+    storeList();
 }
