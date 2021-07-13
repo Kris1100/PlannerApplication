@@ -15,13 +15,13 @@ Page {
 
 
 
-    SilicaListView {
+    SilicaFlickable {
         anchors.fill: parent
-        model: taskListStorage
         contentHeight: content.height
         //
         id:first
         PullDownMenu {
+            id: pullDownMenu
             MenuItem {
                 text: qsTr("Edit task")
                 onClicked: {
@@ -58,7 +58,6 @@ Page {
             }
         }
         //
-
         Column {
 
             id: content

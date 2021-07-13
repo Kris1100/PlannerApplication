@@ -87,9 +87,9 @@ void DataStorer::storeData(QList<Category> &categories) {
     dataFile.close();
 }
 
-//void DataStorer::deleteCategory(int index){
-//    auto jsonArray=DataStorer::readDataTask();
-//    jsonArray.removeAt(index);
-//    DataStorerTask::storeDataTask(jsonArray);
-//}
+void DataStorer::deleteCategory(int index){
+    auto jsonArray=DataStorer::readData();
+    jsonArray.removeAt(index);
+    DataStorer::storeData(jsonArray);
+}
 

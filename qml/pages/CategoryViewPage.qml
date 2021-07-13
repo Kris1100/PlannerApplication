@@ -1,8 +1,17 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+
 Page {
-    id: categorypageview //page
-    property int category:categoryview.model.id
+    id: categorypageview
+    property string category_name: ""
+
+    property alias categoryName: categorypageview.category_name
+    property int category: 0
+    property alias categoryId: categorypageview.category
+
+    property int index: 0
+    property alias categoryIndex: categorypageview.index
+
     SilicaListView {
         id: categoryview
         anchors.fill: parent
@@ -15,45 +24,76 @@ Page {
             MenuItem {
                 text: qsTr("Add new task")
                 onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("TaskEditor.qml"));
-                    dialog.accepted.connect(function() {
-                        taskListStorage.addTask(dialog.name, dialog.text, dialog.place, dialog.time, dialog.importance,dialog.participants,
-                                                dialog.money, model.id); //добавить поле категория
-                    });
+                    var dialog = pageStack.push(Qt.resolvedUrl(
+                                                    "TaskEditor.qml"))
+                    dialog.accepted.connect(function () {
+                        taskListStorage.addTask(
+                                    dialog.name, dialog.text, dialog.place,
+                                    dialog.time, dialog.importance,
+                                    dialog.participants, dialog.money,
+                                    category) //добавить поле категория
+                    })
+                }
+            }
+            MenuItem {
+                text: qsTr("Edit category")
+                onClicked: {
+                    var dialog = pageStack.push("CategoryEditor.qml", {
+                                                    "categoryName": categoryName
+                                                })
+                    dialog.accepted.connect(function () {
+                        categoryListStorage.editcategory(page.index,
+                                                         dialog.name)
+                    })
+                    categoryListStorage.readList()
+                }
+            }
+            MenuItem {
+                text: qsTr("Delete category")
+                onClicked: {
+                    categoryListStorage.deleteCategory(categorypageview.index)
+                    categoryListStorage.readList()
+                    pageStack.pop()
                 }
             }
         }
         delegate: BackgroundItem {
-           //if(taskListStorage[index].category==categorypageview.category) хотим фильтр, if не работает
-                Label {
+            Row {
                 anchors {
                     left: parent.left
                     right: parent.right
                     verticalCenter: parent.verticalCenter
-                    leftMargin: Theme.horizontalPageMargin
-                    rightMargin: Theme.horizontalPageMargin
                 }
-                text: model.name
-            }
-            Component {
-                id: taskViewPage
-                TaskViewPage {}
+
+                IconTextSwitch {
+                    id: checkbox
+                    width: Theme.itemSizeMedium
+                    onCheckedChanged: if (model.is_do)
+                                          model.is_do = false
+                                      else
+                                          model.is_do = true
+                }
+                Label {
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    id: textLabel
+                    text: model.name
+                }
             }
 
             onClicked: {
                 pageStack.push(Qt.resolvedUrl("TaskViewPage.qml"), {
-                                   taskName: model.name,
-                                   taskText: model.text,
-                                   taskPlace: model.place,
-                                   taskTime: model.time,
-                                   taskImportance: model.importance,
-                                   taskParticipants: model.participants,
-                                   taskMoney: model.money,
-                                   taskIndex: index
-
-                               });
+                                   "taskName": model.name,
+                                   "taskText": model.text,
+                                   "taskPlace": model.place,
+                                   "taskTime": model.time,
+                                   "taskImportance": model.importance,
+                                   "taskParticipants": model.participants,
+                                   "taskMoney": model.money,
+                                   "taskIndex": index
+                               })
             }
         }
-         VerticalScrollDecorator {}
+        VerticalScrollDecorator {}
     }
 }

@@ -15,10 +15,6 @@
         <source>Category name:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Category name</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CategoryViewPage</name>
@@ -28,6 +24,14 @@
     </message>
     <message>
         <source>Add new task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit category</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

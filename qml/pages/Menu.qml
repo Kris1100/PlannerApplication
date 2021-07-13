@@ -15,9 +15,9 @@ Page {
             MenuItem {
                 text: qsTr("Add new category")
                 onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("CategoryEditor.qml")); //функция создания новой категории
+                    var dialog = pageStack.push(Qt.resolvedUrl("CategoryEditor.qml"));
                     dialog.accepted.connect(function() {
-                        categoryListStorage.addcategory(dialog.name); //добавить функцию определения id!!!!
+                        categoryListStorage.addcategory(dialog.name);
                     });
                 }
             }
@@ -27,6 +27,7 @@ Page {
                     var dialog = pageStack.push(Qt.resolvedUrl("FixedCategoryEditor.qml")); //!!!функция создания фикс. категории(МЕРОПРИЯТИЯ)
                     dialog.accepted.connect(function() {
                         categoryListStorage.addcategory(dialog.name);
+
                     });
                 }
             }
@@ -49,9 +50,13 @@ Page {
             }
 
             onClicked: {
-                pageStack.push(categoryViewPage, {
-                                   //categoryName: model.name,
-                                   //добавить список!!!
+//                console.log(model.id)
+                taskListStorage.readList(model.id);
+                pageStack.push(Qt.resolvedUrl("CategoryViewPage.qml"), {
+                                   categoryIndex: index,
+                                   categoryId: model.id,
+                                   categoryName: model.name
+                                  //добавить список!!!
                                });
             }
         }

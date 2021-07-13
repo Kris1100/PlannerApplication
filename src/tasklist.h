@@ -23,7 +23,7 @@ public:
         CategoryRole,
         Is_doRole
     };
-    virtual int rowCount(const QModelIndex&) const { return m_tasks.size(); }
+    virtual int rowCount(const QModelIndex&) const { return current_tasks.size(); }
     virtual QVariant data(const QModelIndex &index, int role) const;
     QHash<int, QByteArray> roleNames() const;
 
@@ -32,11 +32,14 @@ public:
     Q_INVOKABLE void edittask(int index, QString name, QString text, QString place, QString time, QString importance, QString participants,
                               QString money);
     Q_INVOKABLE void readList();
+    Q_INVOKABLE void readList(int id);
     Q_INVOKABLE void storeList();
     Q_INVOKABLE void deleteTask(int index);
 
 private:
     QList<Task> m_tasks;
+    QList<Task> current_tasks;
+
 };
 
 #endif

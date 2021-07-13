@@ -14,7 +14,9 @@ ApplicationWindow
     TaskList{
         id: taskListStorage
     }
-
+    TaskList{
+        id: currentTaskListStorage
+    }
     Component.onCompleted:{
         categoryListStorage.readList()
         taskListStorage.readList()}

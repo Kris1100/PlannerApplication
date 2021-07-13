@@ -24,6 +24,9 @@ public:
     Q_INVOKABLE void addcategory(QString name); //добавить функцию добавления id
     Q_INVOKABLE void readList();
     Q_INVOKABLE void storeList();
+    Q_INVOKABLE void deleteCategory(int index);
+    Q_INVOKABLE void editcategory(int index, QString name);
+
 private:
     int count;
     QList<Category> m_categories;

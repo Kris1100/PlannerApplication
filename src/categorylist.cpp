@@ -50,3 +50,17 @@ void CategoryList::readList() {
 void CategoryList::storeList() {
     DataStorer::storeData(m_categories);
 }
+
+void CategoryList::deleteCategory(int index) {
+    DataStorer::deleteCategory(index);
+    m_categories = DataStorer::readData();
+}
+
+void CategoryList::editcategory(int index, QString name) {
+    auto categoriesSize = m_categories.size();
+    beginInsertRows(QModelIndex(), categoriesSize, categoriesSize);
+    m_categories[index].name=name;
+    endInsertRows();
+    DataStorer::storeData(m_categories);
+
+}

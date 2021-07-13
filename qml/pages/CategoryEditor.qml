@@ -4,6 +4,7 @@ import Sailfish.Silica 1.0
 Dialog {
     id: categoryEditor
     property string name: ""
+    property alias categoryName: categoryNameField.text
 
     DialogHeader {
         id: editorHeader
@@ -31,7 +32,6 @@ Dialog {
         TextField {
             id: categoryNameField
             width: parent.width
-            placeholderText: qsTr("Category name")
         }
     }
     onAccepted: {

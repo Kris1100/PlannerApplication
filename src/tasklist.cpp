@@ -27,19 +27,19 @@ QVariant TaskList::data(const QModelIndex &index, int role) const {
         return QVariant();
     switch(role) {
     case NameRole:
-        return QVariant(m_tasks[index.row()].name);
+        return QVariant(current_tasks[index.row()].name);
     case TextRole:
-        return QVariant(m_tasks[index.row()].text);
+        return QVariant(current_tasks[index.row()].text);
     case PlaceRole:
-        return QVariant(m_tasks[index.row()].place);
+        return QVariant(current_tasks[index.row()].place);
     case TimeRole:
-        return QVariant(m_tasks[index.row()].time);
+        return QVariant(current_tasks[index.row()].time);
     case ImportanceRole:
-        return QVariant(m_tasks[index.row()].importance);
+        return QVariant(current_tasks[index.row()].importance);
     case ParticipantsRole:
-        return QVariant(m_tasks[index.row()].participants);
+        return QVariant(current_tasks[index.row()].participants);
     case MoneyRole:
-        return QVariant(m_tasks[index.row()].money);
+        return QVariant(current_tasks[index.row()].money);
     default:
         return QVariant();
     }
@@ -76,11 +76,27 @@ void TaskList::readList() {
     endResetModel();
 }
 
+void TaskList::readList(int id) {
+    beginResetModel();
+    current_tasks.erase(current_tasks.begin(), current_tasks.end());
+    for (int i=0;i<m_tasks.size();i++){
+        if (m_tasks[i].category == id) current_tasks.append(m_tasks[i]);
+    }
+    endResetModel();
+}
+
 void TaskList::deleteTask(int index) {
-    DataStorerTask::deleteTask(index);
-    m_tasks = DataStorerTask::readDataTask();
+    QList<Task> res;
+    for(int i=0; i<m_tasks.size();i++)
+        if(m_tasks[i].category!=current_tasks[index].category)
+            res.append(m_tasks[i]);
+    for(int i=0; i<current_tasks.size();i++)
+        if(i!=index){
+            res.append(current_tasks[i]);
+        }
 
-
+    m_tasks = res;
+    DataStorerTask::storeDataTask(m_tasks);
 }
 
 void TaskList::storeList() {
