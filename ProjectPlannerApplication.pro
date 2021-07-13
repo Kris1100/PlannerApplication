@@ -30,6 +30,7 @@ DISTFILES += qml/ProjectPlannerApplication.qml \
     qml/pages/Menu.qml \
     qml/pages/TaskEditor.qml \
     qml/pages/TaskViewPage.qml \
+    qml/project_templates/first.json \
     rpm/ProjectPlannerApplication.changes.in \
     rpm/ProjectPlannerApplication.changes.run.in \
     rpm/ProjectPlannerApplication.spec \
@@ -47,7 +48,7 @@ CONFIG += sailfishapp_i18n
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/ProjectPlannerApplication-de.ts
+TRANSLATIONS += translations/ProjectPlannerApplication-ru.ts
 
 HEADERS += \
     src/category.h \

@@ -2,10 +2,10 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
-    id:page
+    id: page
     property alias taskName: taskNameLabel.text
     property alias taskText: taskTextLabel.text
-    property alias taskPlace:taskPlaceLabel.text
+    property alias taskPlace: taskPlaceLabel.text
     property alias taskTime: taskTimeLabel.text
     property alias taskImportance: taskImportanceLabel.text
     property alias taskParticipants: taskParticipantsLabel.text
@@ -13,53 +13,50 @@ Page {
     property int index: 0
     property alias taskIndex: page.index
 
-
-
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: content.height
-        //
-        id:first
+        id: first
         PullDownMenu {
             id: pullDownMenu
             MenuItem {
                 text: qsTr("Edit task")
                 onClicked: {
-                    var dialog = pageStack.push("TaskEditor.qml",{
-                                                                   taskName: taskName,
-                                                                   taskText: taskText,
-                                                                   taskPlace: taskPlace,
-                                                                   taskTime: taskTime,
-                                                                   taskImportance: taskImportance,
-                                                                   taskParticipants: taskParticipants,
-                                                                   taskMoney: taskMoney
-
-                                                               });
-                    dialog.accepted.connect(function() {
-                        taskListStorage.edittask(page.index, dialog.name, dialog.text, dialog.place, dialog.time, dialog.importance,dialog.participants,
-                                                 dialog.money);
-
-                    });
-                    taskListStorage.readList();
-
-
-
+                    var dialog = pageStack.push("TaskEditor.qml", {
+                                                    "taskName": taskName,
+                                                    "taskText": taskText,
+                                                    "taskPlace": taskPlace,
+                                                    "taskTime": taskTime,
+                                                    "taskImportance": taskImportance,
+                                                    "taskParticipants": taskParticipants,
+                                                    "taskMoney": taskMoney
+                                                })
+                    dialog.accepted.connect(function () {
+                        taskListStorage.edittask(page.index, dialog.name,
+                                                 dialog.text, dialog.place,
+                                                 dialog.time,
+                                                 dialog.importance,
+                                                 dialog.participants,
+                                                 dialog.money)
+                        taskName = dialog.name;
+                        taskText = dialog.text;
+                        taskPlace = dialog.place;
+                        taskTime = dialog.time;
+                        taskImportance = dialog.importance;
+                        taskParticipants = dialog.participants;
+                        taskMoney = dialog.money;
+                    })
                 }
             }
             MenuItem {
                 text: qsTr("Delete task")
                 onClicked: {
-                    taskListStorage.deleteTask(page.index);
-                    taskListStorage.readList();
-                    pageStack.pop();
-
-
-                    }
+                    taskListStorage.deleteTask(page.index)
+                    pageStack.pop()
+                }
             }
         }
-        //
         Column {
-
             id: content
             anchors {
                 left: parent.left

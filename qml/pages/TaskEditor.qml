@@ -122,6 +122,5 @@ Dialog {
         taskEditor.importance = taskImportanceField.value
         taskEditor.participants = taskParticipantsField.text
         taskEditor.money = taskMoneyField.text
-        pageStack.pop();
     }
 }

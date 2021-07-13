@@ -38,7 +38,7 @@ public:
 
 private:
     QList<Task> m_tasks;
-    QList<Task> current_tasks;
+    QList<int> current_tasks;
 
 };
 

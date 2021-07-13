@@ -14,13 +14,13 @@ ApplicationWindow
     TaskList{
         id: taskListStorage
     }
-    TaskList{
-        id: currentTaskListStorage
-    }
     Component.onCompleted:{
         categoryListStorage.readList()
-        taskListStorage.readList()}
+        taskListStorage.readList()
+        //storage.readTemplates(Qt.resolvedUrl("project_templates/first.json"))
+    }
     Component.onDestruction:{
         categoryListStorage.storeList()
+        taskListStorage.storeList()
         }
 }

@@ -25,21 +25,24 @@ QHash<int, QByteArray> TaskList::roleNames() const {
 QVariant TaskList::data(const QModelIndex &index, int role) const {
     if(!index.isValid())
         return QVariant();
+    auto filetedItemIndex = index.row();
+    auto realItemIndex = current_tasks[filetedItemIndex];
+    auto item = m_tasks[realItemIndex];
     switch(role) {
     case NameRole:
-        return QVariant(current_tasks[index.row()].name);
+        return QVariant(item.name);
     case TextRole:
-        return QVariant(current_tasks[index.row()].text);
+        return QVariant(item.text);
     case PlaceRole:
-        return QVariant(current_tasks[index.row()].place);
+        return QVariant(item.place);
     case TimeRole:
-        return QVariant(current_tasks[index.row()].time);
+        return QVariant(item.time);
     case ImportanceRole:
-        return QVariant(current_tasks[index.row()].importance);
+        return QVariant(item.importance);
     case ParticipantsRole:
-        return QVariant(current_tasks[index.row()].participants);
+        return QVariant(item.participants);
     case MoneyRole:
-        return QVariant(current_tasks[index.row()].money);
+        return QVariant(item.money);
     default:
         return QVariant();
     }
@@ -47,26 +50,35 @@ QVariant TaskList::data(const QModelIndex &index, int role) const {
 
 void TaskList::addTask(QString name, QString text, QString place, QString time, QString importance, QString participants,
                        QString money, int category) {
-    auto tasksSize = m_tasks.size();
-    beginInsertRows(QModelIndex(), tasksSize, tasksSize);
+
     m_tasks.append(Task(name, text,place,time,importance,participants,money, category));
+    auto tasksSize = current_tasks.size();
+    beginInsertRows(QModelIndex(), tasksSize, tasksSize);
+    current_tasks.append(m_tasks.size() - 1);
     endInsertRows();
-    storeList();
+    //storeList();
+
 }
 
 void TaskList::edittask(int index, QString name, QString text, QString place, QString time, QString importance, QString participants,
                         QString money) {
-    auto tasksSize = m_tasks.size();
-    beginInsertRows(QModelIndex(), tasksSize, tasksSize);
-    m_tasks[index].name=name;
-    m_tasks[index].text=text;
-    m_tasks[index].place=place;
-    m_tasks[index].time=time;
-    m_tasks[index].importance=importance;
-    m_tasks[index].participants=participants;
-    m_tasks[index].money=money;
+    m_tasks[current_tasks[index]].name=name;
+    m_tasks[current_tasks[index]].text=text;
+    m_tasks[current_tasks[index]].place=place;
+    m_tasks[current_tasks[index]].time=time;
+    m_tasks[current_tasks[index]].importance=importance;
+    m_tasks[current_tasks[index]].participants=participants;
+    m_tasks[current_tasks[index]].money=money;
+
+    beginInsertRows(QModelIndex(), index, index);
+    current_tasks.append(index);
     endInsertRows();
-    DataStorerTask::storeDataTask(m_tasks);
+    beginRemoveRows(QModelIndex(), index+1, index+1);
+    current_tasks.removeAt(index+1);
+    endRemoveRows();
+    storeList();
+
+
 
 }
 
@@ -80,23 +92,15 @@ void TaskList::readList(int id) {
     beginResetModel();
     current_tasks.erase(current_tasks.begin(), current_tasks.end());
     for (int i=0;i<m_tasks.size();i++){
-        if (m_tasks[i].category == id) current_tasks.append(m_tasks[i]);
+        if (m_tasks[i].category == id) current_tasks.append(i);
     }
     endResetModel();
 }
 
 void TaskList::deleteTask(int index) {
-    QList<Task> res;
-    for(int i=0; i<m_tasks.size();i++)
-        if(m_tasks[i].category!=current_tasks[index].category)
-            res.append(m_tasks[i]);
-    for(int i=0; i<current_tasks.size();i++)
-        if(i!=index){
-            res.append(current_tasks[i]);
-        }
-
-    m_tasks = res;
-    DataStorerTask::storeDataTask(m_tasks);
+    beginRemoveRows(QModelIndex(), index, index);
+    m_tasks.removeAt(current_tasks[index]);
+    endRemoveRows();
 }
 
 void TaskList::storeList() {

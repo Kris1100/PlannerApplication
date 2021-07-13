@@ -45,14 +45,12 @@ Page {
                         categoryListStorage.editcategory(page.index,
                                                          dialog.name)
                     })
-                    categoryListStorage.readList()
                 }
             }
             MenuItem {
                 text: qsTr("Delete category")
                 onClicked: {
                     categoryListStorage.deleteCategory(categorypageview.index)
-                    categoryListStorage.readList()
                     pageStack.pop()
                 }
             }
