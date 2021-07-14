@@ -11,13 +11,19 @@ ApplicationWindow
     CategoryList {
         id: categoryListStorage
     }
+    CategoryList {
+        id: fixedCategoryListStorage
+    }
     TaskList{
         id: taskListStorage
     }
+
     Component.onCompleted:{
         categoryListStorage.readList()
         taskListStorage.readList()
-        //storage.readTemplates(Qt.resolvedUrl("project_templates/first.json"))
+        fixedCategoryListStorage.readTemplates(Qt.resolvedUrl("project_templates/fixed_categories.json"))
+        taskListStorage.readTemplates(Qt.resolvedUrl("project_templates/fixed_tasks.json"))
+
     }
     Component.onDestruction:{
         categoryListStorage.storeList()

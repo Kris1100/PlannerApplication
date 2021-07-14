@@ -31,6 +31,7 @@ DISTFILES += qml/ProjectPlannerApplication.qml \
     qml/pages/TaskEditor.qml \
     qml/pages/TaskViewPage.qml \
     qml/project_templates/fixed_categories.json \
+    qml/project_templates/fixed_tasks.json \
     rpm/ProjectPlannerApplication.changes.in \
     rpm/ProjectPlannerApplication.changes.run.in \
     rpm/ProjectPlannerApplication.spec \

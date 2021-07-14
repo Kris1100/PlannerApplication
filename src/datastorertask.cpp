@@ -88,6 +88,41 @@ QList<Task> DataStorerTask::readDataTask() {
     return tasks;
 }
 
+
+QList<Task> DataStorerTask::readTemplates(QUrl file) {
+    QList<Task> tasks;
+    qDebug() << "Data file path: " << file.toLocalFile();
+    QFile dataFile(file.toLocalFile());
+    if(!dataFile.exists()) {
+        // Data does not exists
+        return tasks;
+    }
+    if(!dataFile.open(QFile::ReadOnly)) {
+        // File could not be openned
+        return tasks;
+    }
+    auto rawData = dataFile.readAll();
+    auto jsonDocument = QJsonDocument::fromJson(rawData);
+    if(jsonDocument.isNull()) {
+        // Data was not parsed
+        return tasks;
+    }
+    if(!jsonDocument.isArray()) {
+        // Root element is not array
+        return tasks;
+    }
+    auto jsonArray = jsonDocument.array();
+    foreach(QJsonValue arrayValue, jsonArray) {
+        if(!arrayValue.isObject()) continue; // Element of the array is not an object
+        auto jsonObject = arrayValue.toObject();
+        tasks.append(DSPrivate::convertJsonObjectToTask(jsonObject));
+    }
+    return tasks;
+}
+
+
+
+
 void DataStorerTask::storeDataTask(QList<Task> &tasks) {
     QJsonArray jsonArray;
     foreach(Task task, tasks) {
@@ -108,3 +143,5 @@ void DataStorerTask::deleteTask(int index){
     jsonArray.removeAt(index);
     DataStorerTask::storeDataTask(jsonArray);
 }
+
+

@@ -24,11 +24,12 @@ Page {
             MenuItem {
                 text: qsTr("Choose existing category")
                 onClicked: {
-                    var dialog = pageStack.push(Qt.resolvedUrl("FixedCategoryEditor.qml")); //!!!функция создания фикс. категории(МЕРОПРИЯТИЯ)
-                    dialog.accepted.connect(function() {
+                    pageStack.push(Qt.resolvedUrl("FixedCategoryEditor.qml")); //!!!функция создания фикс. категории(МЕРОПРИЯТИЯ)
+                    /*dialog.accepted.connect(function() {
                         categoryListStorage.addcategory(dialog.name);
 
                     });
+                    */
                 }
             }
         }

@@ -51,8 +51,10 @@ Page {
             MenuItem {
                 text: qsTr("Delete task")
                 onClicked: {
+
                     taskListStorage.deleteTask(page.index)
-                    pageStack.pop()
+                    pageStack.pop();
+
                 }
             }
         }

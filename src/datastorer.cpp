@@ -93,3 +93,32 @@ void DataStorer::deleteCategory(int index){
     DataStorer::storeData(jsonArray);
 }
 
+QList<Category> DataStorer::readTemplates(QUrl file) {
+    QList<Category> categories;
+    QFile dataFile(file.toLocalFile());
+    if(!dataFile.exists()) {
+        // Data does not exists
+        return categories;
+    }
+    if(!dataFile.open(QFile::ReadOnly)) {
+        // File could not be openned
+        return categories;
+    }
+    auto rawData = dataFile.readAll();
+    auto jsonDocument = QJsonDocument::fromJson(rawData);
+    if(jsonDocument.isNull()) {
+        // Data was not parsed
+        return categories;
+    }
+    if(!jsonDocument.isArray()) {
+        // Root element is not array
+        return categories;
+    }
+    auto jsonArray = jsonDocument.array();
+    foreach(QJsonValue arrayValue, jsonArray) {
+        if(!arrayValue.isObject()) continue; // Element of the array is not an object
+        auto jsonObject = arrayValue.toObject();
+        categories.append(DSPrivate::convertJsonObjectToCategory(jsonObject));
+    }
+    return categories;
+}

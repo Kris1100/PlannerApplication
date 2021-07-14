@@ -29,7 +29,7 @@ QVariant CategoryList::data(const QModelIndex &index, int role) const {
     }
 }
 
-void CategoryList::addcategory(QString name) {
+int CategoryList::addcategory(QString name) {
     count++;
     int id = count;
     auto categorysSize = m_categories.size();
@@ -37,7 +37,7 @@ void CategoryList::addcategory(QString name) {
     m_categories.append(Category(name, id));
     endInsertRows();
     storeList();
-
+    return id;
 }
 
 void CategoryList::readList() {
@@ -57,6 +57,12 @@ void CategoryList::deleteCategory(int index) {
     beginRemoveRows(QModelIndex(), index, index);
     m_categories.removeAt(index);
     endRemoveRows();
+}
+
+void CategoryList::readTemplates(QUrl file) {
+    beginResetModel();
+    m_categories = DataStorer::readTemplates(file);
+    endResetModel();
 }
 
 void CategoryList::editcategory(int index, QString name) {

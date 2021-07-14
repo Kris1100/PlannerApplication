@@ -3,6 +3,7 @@
 
 #include <QAbstractListModel>
 #include <QList>
+#include <QUrl>
 #include "task.h"
 
 class TaskList : public QAbstractListModel
@@ -37,11 +38,16 @@ public:
     Q_INVOKABLE void deleteTask(int index);
     Q_INVOKABLE void deleteTask_id(int index);
     Q_INVOKABLE void checkedtask(int index, bool is_do);
+    Q_INVOKABLE void readTemplates(QUrl file);
+    Q_INVOKABLE void addFixed(int id, int category) ;
+
+
 
 
 private:
     QList<Task> m_tasks;
     QList<int> current_tasks;
+    QList<Task> fixed_tasks;
 
 };
 

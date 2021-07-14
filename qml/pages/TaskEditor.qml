@@ -7,7 +7,6 @@ Dialog {
     property alias taskText: taskTextField.text
     property alias taskPlace:taskPlaceField.text
     property alias taskTime: taskTimeField.text
-    property alias taskImportance: taskImportanceField.value
     property alias taskParticipants: taskParticipantsField.text
     property alias taskMoney: taskMoneyField.text
     property string name: ""

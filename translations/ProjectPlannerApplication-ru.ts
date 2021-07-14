@@ -51,6 +51,14 @@
     </message>
 </context>
 <context>
+    <name>FixedCategoryEditor</name>
+    <message>
+        <location filename="../qml/pages/FixedCategoryEditor.qml" line="15"/>
+        <source>Fixed categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Menu</name>
     <message>
         <location filename="../qml/pages/Menu.qml" line="12"/>
@@ -71,42 +79,42 @@
 <context>
     <name>TaskEditor</name>
     <message>
-        <location filename="../qml/pages/TaskEditor.qml" line="23"/>
+        <location filename="../qml/pages/TaskEditor.qml" line="22"/>
         <source>Create</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEditor.qml" line="24"/>
+        <location filename="../qml/pages/TaskEditor.qml" line="23"/>
         <source>New task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEditor.qml" line="48"/>
+        <location filename="../qml/pages/TaskEditor.qml" line="47"/>
         <source>Task name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEditor.qml" line="57"/>
+        <location filename="../qml/pages/TaskEditor.qml" line="56"/>
         <source>Task description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEditor.qml" line="67"/>
+        <location filename="../qml/pages/TaskEditor.qml" line="66"/>
         <source>Location:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEditor.qml" line="76"/>
+        <location filename="../qml/pages/TaskEditor.qml" line="75"/>
         <source>Time:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEditor.qml" line="96"/>
+        <location filename="../qml/pages/TaskEditor.qml" line="95"/>
         <source>Participants:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskEditor.qml" line="105"/>
+        <location filename="../qml/pages/TaskEditor.qml" line="104"/>
         <source>Money:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -124,42 +132,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskViewPage.qml" line="70"/>
+        <location filename="../qml/pages/TaskViewPage.qml" line="72"/>
         <source>Task information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskViewPage.qml" line="74"/>
+        <location filename="../qml/pages/TaskViewPage.qml" line="76"/>
         <source>Task name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskViewPage.qml" line="84"/>
+        <location filename="../qml/pages/TaskViewPage.qml" line="86"/>
         <source>Task description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskViewPage.qml" line="93"/>
+        <location filename="../qml/pages/TaskViewPage.qml" line="95"/>
         <source>Location:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskViewPage.qml" line="103"/>
+        <location filename="../qml/pages/TaskViewPage.qml" line="105"/>
         <source>Time:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskViewPage.qml" line="113"/>
+        <location filename="../qml/pages/TaskViewPage.qml" line="115"/>
         <source>Importance:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskViewPage.qml" line="122"/>
+        <location filename="../qml/pages/TaskViewPage.qml" line="124"/>
         <source>Participants:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/TaskViewPage.qml" line="131"/>
+        <location filename="../qml/pages/TaskViewPage.qml" line="133"/>
         <source>Money:</source>
         <translation type="unfinished"></translation>
     </message>

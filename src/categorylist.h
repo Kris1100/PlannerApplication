@@ -3,6 +3,7 @@
 
 #include <QAbstractListModel>
 #include <QList>
+#include <QUrl>
 #include "category.h"
 
 
@@ -21,15 +22,18 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const;
     QHash<int, QByteArray> roleNames() const;
 
-    Q_INVOKABLE void addcategory(QString name); //добавить функцию добавления id
+    Q_INVOKABLE int addcategory(QString name); //добавить функцию добавления id
     Q_INVOKABLE void readList();
     Q_INVOKABLE void storeList();
     Q_INVOKABLE void deleteCategory(int index);
     Q_INVOKABLE void editcategory(int index, QString name);
+    Q_INVOKABLE void readTemplates(QUrl file);
+
 
 private:
     int count;
     QList<Category> m_categories;
+
 };
 
 #endif // categoryLIST_H

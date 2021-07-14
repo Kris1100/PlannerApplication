@@ -43,6 +43,13 @@
     </message>
 </context>
 <context>
+    <name>FixedCategoryEditor</name>
+    <message>
+        <source>Fixed categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Menu</name>
     <message>
         <source>Add new category</source>

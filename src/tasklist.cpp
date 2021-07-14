@@ -88,11 +88,26 @@ void TaskList::checkedtask(int index, bool is_do) {
     storeList();
 }
 
+void TaskList::readTemplates(QUrl file) {
+    beginResetModel();
+    fixed_tasks = DataStorerTask::readTemplates(file);
+    endResetModel();
+}
+
 void TaskList::readList() {
     beginResetModel();
     m_tasks = DataStorerTask::readDataTask();
     endResetModel();
 }
+
+void TaskList::addFixed(int id, int category){
+    for (int i = 0; i < fixed_tasks.size(); i++){
+        if (fixed_tasks[i].category == id)
+            m_tasks.append(Task(fixed_tasks[i].name, fixed_tasks[i].text,fixed_tasks[i].place,fixed_tasks[i].time,fixed_tasks[i].importance,
+                                fixed_tasks[i].participants,fixed_tasks[i].money, category));
+    }
+}
+
 
 void TaskList::readList(int id) {
     beginResetModel();
